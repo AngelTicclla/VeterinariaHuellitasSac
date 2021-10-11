@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a6c281e4-aedf-4aa3-8e26-1b81e94d327e">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#F0EFEF"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="idcliente" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT descripcion_producto as "Producto" , precio_producto as "Precio",cantidad_producto as "Cantidad" , precio_total,concat_ws( ' ',tb_cliente.nombres_cliente,tb_cliente.apellidos_cliente) as "Cliente",tb_cliente.dni_cliente,tb_cliente.email_cliente FROM tb_producto INNER JOIN tb_cliente on tb_producto.idCliente= tb_cliente.idCliente
+where  tb_cliente.idCliente=$P{idcliente} ;]]>
+	</queryString>
+	<field name="Producto" class="java.lang.String"/>
+	<field name="Precio" class="java.math.BigDecimal"/>
+	<field name="Cantidad" class="java.lang.Integer"/>
+	<field name="precio_total" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Cliente" class="java.lang.String"/>
+	<field name="dni_cliente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="email_cliente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="219" splitType="Stretch">
+			<staticText>
+				<reportElement x="-13" y="11" width="111" height="17" uuid="9796428e-8923-4dfc-a437-4a8e74e1fa47"/>
+				<text><![CDATA[Huellitas Veterinaria S.A ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-13" y="28" width="120" height="32" uuid="82564a34-e262-4dbd-9a59-d525e9bbdf28"/>
+				<text><![CDATA[Av. Paseo de la Republica 3220]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-13" y="60" width="100" height="20" uuid="973fd50e-65ed-43cb-b616-d909c42a4099"/>
+				<text><![CDATA[Ruc: 20100164643]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-13" y="105" width="84" height="20" uuid="4d376ecf-1a4d-4433-9b67-bbc57081737d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-13" y="137" width="84" height="20" uuid="80f1d5ab-c58c-4ec8-8d46-055fdbf968c1"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DNI]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="71" y="137" width="84" height="18" uuid="71db2cef-6539-4477-9f96-84556aa92ee4"/>
+				<textFieldExpression><![CDATA[$F{dni_cliente}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-13" y="177" width="84" height="20" uuid="d0c1ce9e-5854-483b-a428-b79e87d7d3b3"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Direccion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="71" y="177" width="128" height="20" uuid="e2e76ba8-d618-4223-b7bd-7aac97e07aea"/>
+				<text><![CDATA[Av. Arequipa 223 - Lince]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="233" y="105" width="60" height="20" uuid="0a80b090-df27-4273-b6cc-ee9c1a5709e6"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="333" y="105" width="100" height="20" uuid="f98e4809-30f6-494a-a49a-69dad98908bb"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="233" y="137" width="100" height="20" uuid="0af88e79-0f3c-461c-a3da-eff160c578b0"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Medio de Pago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="137" width="100" height="20" uuid="d935506b-d7d6-48cd-9561-05460418bb64"/>
+				<text><![CDATA[Visa]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="217" y="215" width="100" height="0" backcolor="#000000" uuid="d16e5da4-6900-4cbd-8e12-59b4fedadfc7"/>
+			</rectangle>
+			<textField>
+				<reportElement x="71" y="105" width="100" height="20" uuid="5e6f2971-4f97-45f8-a0c0-76009de5cddd"/>
+				<textFieldExpression><![CDATA[$F{Cliente}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-13" y="214" width="570" height="1" uuid="2453df6b-8db9-47ab-870b-cae903d693da"/>
+			</line>
+			<frame>
+				<reportElement mode="Opaque" x="-30" y="-24" width="602" height="24" forecolor="#99FF99" backcolor="#99FF99" uuid="bbe05808-0494-446e-8aea-c27728190849"/>
+			</frame>
+			<staticText>
+				<reportElement x="233" y="177" width="100" height="20" uuid="46aa2f60-10bf-494a-a002-339d93fa66e7"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[N°O/C]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="177" width="100" height="20" uuid="3d3697b6-59b9-4339-850d-5b2d771476c9"/>
+				<text><![CDATA[10100001]]></text>
+			</staticText>
+			<image>
+				<reportElement x="442" y="28" width="133" height="109" uuid="b6530d70-fcc8-4822-a4f7-324ccab390cf"/>
+				<imageExpression><![CDATA["C:\\Users\\Usuario\\Desktop\\PROYECTO FINAL VETERINARIA HUELLITAS\\Clinica_Veterinaria-JSP\\web\\img\\logo_formularios.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="121" y="28" width="325" height="52" uuid="9272590f-6d69-41d5-a3a9-c3bb8125555e"/>
+				<imageExpression><![CDATA["C:\\Users\\Usuario\\Desktop\\boleta.jpeg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement style="Column header" x="25" y="7" width="108" height="18" forecolor="#000000" uuid="8bb60476-e5d3-46ba-8527-f82de137dbe8"/>
+				<textElement>
+					<font fontName="Californian FB" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="293" y="8" width="111" height="18" forecolor="#000000" uuid="44c61203-895a-4887-8ef7-aef152334357"/>
+				<textElement>
+					<font fontName="Californian FB" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="442" y="8" width="111" height="18" forecolor="#000000" uuid="0f20fc7e-dc67-4f71-bd69-ccee6af031f4"/>
+				<textElement>
+					<font fontName="Californian FB" isBold="true"/>
+				</textElement>
+				<text><![CDATA[precio_total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="155" y="7" width="111" height="18" forecolor="#000000" uuid="81d7354f-d21e-4e0c-9a3b-568844882ab0"/>
+				<textElement>
+					<font fontName="Californian FB" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Precio Unitario]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="39" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="293" y="13" width="111" height="18" uuid="9391668c-9d96-4619-a691-d50ec058744d"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cantidad}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="26" y="13" width="107" height="18" uuid="e1de4533-21b7-4cbc-b0ad-5c67f67c2cb0"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Producto}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Detail" positionType="Float" x="446" y="13" width="111" height="18" uuid="6cfebd94-9102-4e0c-b29d-45d2120dbb40"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{precio_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="166" y="19" width="100" height="20" uuid="2981ee4a-dc43-4c30-901b-d0b55324740a"/>
+				<textFieldExpression><![CDATA[$F{Precio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="42" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="747c08ab-04a6-4af4-a449-5089f6b2e3ff"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="71" y="4" width="16" height="23" uuid="84d617d5-dddf-46c5-8f42-1e87ce96fe4a"/>
+			</frame>
+			<frame>
+				<reportElement mode="Opaque" x="-13" y="18" width="585" height="24" forecolor="#99FF99" backcolor="#99FF99" uuid="62de58e6-74e3-4f70-b31d-054b1d0d7014"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="408" y="1" width="40" height="20" forecolor="#FFFFFF" uuid="ca4a4532-1bf0-44d9-944e-e693874ca9e2"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#000000" uuid="5cc2fc8f-5843-40c9-ab00-5582df57f46c"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="15" y="1" width="197" height="20" forecolor="#000000" uuid="04ad5132-1884-4ca9-a3da-1806483750cd"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
